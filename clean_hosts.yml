@@ -1,0 +1,15 @@
+---
+ - name: keep 10 lines of /etc/hosts file
+   hosts: all
+   gather_facts: yes
+   tasks:
+   - name: update etc/hosts
+     become: yes
+     become_user: root
+     tags: delete_file
+     lineinfile:
+       path: /etc/hosts
+       regexp: "192.168.*"
+       state: absent
+       backup: yes
+
